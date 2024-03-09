@@ -1,4 +1,4 @@
-import { IChildren, Prettify } from "./baseInterface";
+import { IChildren, Prettify } from "@/@types/baseInterface";
 import { LuInfo } from "react-icons/lu";
 
 type HomeLayoutProps = Prettify<
