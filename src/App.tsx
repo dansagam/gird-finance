@@ -1,9 +1,13 @@
 import React from "react";
+import HomeLayout from "./layout/home-layout";
 
 function App() {
+  const onAction = () => {};
   return (
     <React.Fragment>
-      <div>dhsdkjsbdjbskjd</div>
+      <HomeLayout onAction={onAction}>
+        <div>dhsdkjsbdjbskjd</div>
+      </HomeLayout>
     </React.Fragment>
   );
 }
