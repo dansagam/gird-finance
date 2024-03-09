@@ -47,9 +47,7 @@ export interface BaseControlledParameter<TFieldValues extends FieldValues> {
 }
 
 export type IBaseQueryPArams = {
-  page?: number;
-  page_size?: number;
-  search?: string;
+  apikey?: string;
 };
 
 export type ISetState<T> = React.Dispatch<React.SetStateAction<T>>;
@@ -66,4 +64,10 @@ export type TableMeta = { count: number; next: string; previous: null | string }
 
 export type BaseTableResponseDto<T> = Prettify<{ results: Array<T> } & TableMeta>;
 
-export type BaseResponseDataDto<T> = T;
+export type BaseResponseDataDto<T> = {
+  data: T;
+};
+
+export type BaseApiParams<T> = {
+  params: T;
+};

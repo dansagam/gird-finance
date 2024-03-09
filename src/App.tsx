@@ -1,13 +1,10 @@
 import React from "react";
-import HomeLayout from "./layout/home-layout";
+import Transfer from "./modules/home/views/Transfer";
 
 function App() {
-  const onAction = () => {};
   return (
     <React.Fragment>
-      <HomeLayout onAction={onAction}>
-        <div>dhsdkjsbdjbskjd</div>
-      </HomeLayout>
+      <Transfer />
     </React.Fragment>
   );
 }
