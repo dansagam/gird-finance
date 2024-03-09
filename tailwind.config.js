@@ -2,7 +2,16 @@
 
 const { fontFamily } = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
-const palette = {};
+
+const PRIMARY = {
+  main: "var(--primary-main)",
+  light: "var(--primary-light)",
+};
+const palette = {
+  primary: {
+    ...PRIMARY,
+  },
+};
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
