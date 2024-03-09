@@ -12,9 +12,9 @@ type TransferValidationType = yup.InferType<typeof transferValidationSchema>;
 
 export const transferDefaultValues: TransferValidationType = {
   sendAmount: 0,
-  sendCurrency: "",
+  sendCurrency: "GBP",
   receiverAmount: 0,
-  receiverCurrency: "",
+  receiverCurrency: "USD",
 };
 
 export const transferResolver = yupResolver(transferValidationSchema);
