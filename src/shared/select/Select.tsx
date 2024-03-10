@@ -17,9 +17,13 @@ type SelectProps = Prettify<{
   showIcon?: boolean;
   valueAsDisplay?: boolean;
   isSearch?: boolean;
+  classess?: {
+    button?: string;
+    panel?: string;
+  };
 }>;
 function Select(props: SelectProps) {
-  const { options, onChange, value = "", showIcon = true, valueAsDisplay, isSearch = true } = props;
+  const { options, onChange, value = "", showIcon = true, valueAsDisplay, isSearch = true, classess } = props;
   const [text, setText] = React.useState("");
   const escapedText = text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
   const reqText = new RegExp(`${escapedText}`, "i");
@@ -33,7 +37,12 @@ function Select(props: SelectProps) {
       <Popover className="relative">
         {({ open, close }) => (
           <React.Fragment>
-            <Popover.Button className=" rounded-[100px] flex  justify-between items-center w-full min-w-24 outline-none p-2 bg-[#f2f2f2]">
+            <Popover.Button
+              className={twMerge(
+                " rounded-[100px] flex  justify-between items-center w-full min-w-24 outline-none p-2 bg-[#f2f2f2]",
+                classess?.button
+              )}
+            >
               <span className=" flex items-center gap-2">
                 {selectedValue?.icon && showIcon && <img src={selectedValue.icon} alt={selectedValue.icon} />}
                 <span className=" text-black font-semibold">
@@ -51,7 +60,12 @@ function Select(props: SelectProps) {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute z-10 bg-white rounded-[2rem] right-0 px-3 py-3 shadow-lg min-w-[25rem] outline-none w-full ">
+              <Popover.Panel
+                className={twMerge(
+                  "absolute z-10 bg-white rounded-[2rem] right-0 px-3 py-3 shadow-lg min-w-[25rem] outline-none w-full ",
+                  classess?.panel
+                )}
+              >
                 <div>
                   {isSearch && (
                     <SearchInput placeholder=" Search for currency..." onChange={(e) => setText(e.target.value)} />
@@ -62,8 +76,8 @@ function Select(props: SelectProps) {
                       <li
                         key={idx}
                         className={twMerge(
-                          "flex relative justify-between gap-2 px-5 py-6 transition-all duration-200 items-center",
-                          "after:content-[''] h-0 after:absolute after:w-1 hover:after:h-full after:bg-gray-300 whitespace-nowrap "
+                          "flex relative justify-between gap-2 px-5 py-6 transition-all duration-500 items-center",
+                          "after:content-[''] h-0 after:absolute after:right-0 after:w-1 after:transition-all after:duration-500 after:hover:h-full after:bg-gray-300 whitespace-nowrap cursor-pointer "
                         )}
                         onClick={(e) => {
                           e.stopPropagation();
