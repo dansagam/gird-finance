@@ -210,6 +210,9 @@ const CustomDeliverySelect = (props: Props) => {
         control={control}
         isSearch={false}
         options={transformOptions}
+        classess={{
+          button: " bg-white rounded-md py-4 px-3",
+        }}
         {...rest}
       />
     </div>
