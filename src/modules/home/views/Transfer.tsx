@@ -9,7 +9,7 @@ import Dialog from "@/shared/modal/Dialog";
 import React from "react";
 
 function Transfer() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [err, setErr] = React.useState(false);
   const form = useForm({
     defaultValues: transferDefaultValues,
