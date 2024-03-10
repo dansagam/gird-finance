@@ -6,6 +6,7 @@ const colors = require("tailwindcss/colors");
 const PRIMARY = {
   main: "var(--primary-main)",
   light: "var(--primary-light)",
+  lighter: "var(--primary-lighter)",
 };
 const palette = {
   primary: {

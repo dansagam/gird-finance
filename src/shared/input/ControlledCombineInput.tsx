@@ -28,6 +28,7 @@ function ControlledCombineInput<TFieldValues extends FieldValues>(props: Control
         rules={rules}
         className=" flex-1"
         prefix={prefix}
+        decimalScale={2}
       />
       <ControlledSelect
         control={control}

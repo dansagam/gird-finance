@@ -1,4 +1,5 @@
 import { IChildren, Prettify } from "@/@types/baseInterface";
+import StandIcon from "@/assets/stand_pag.svg?react";
 import { LuInfo } from "react-icons/lu";
 
 type HomeLayoutProps = Prettify<
@@ -10,9 +11,11 @@ type HomeLayoutProps = Prettify<
 >;
 const HomeLayout = ({ children, onAction, actionText }: HomeLayoutProps) => {
   return (
-    <div className="  w-full h-full">
-      <div className=" grid grid-cols-2 gap-3  h-full">
-        <div>Send Information</div>
+    <div className="  w-full h-full bg-primary-lighter">
+      <div className=" grid md:grid-cols-2 gap-3 grid-cols-1  h-full">
+        <div className=" bg-[url(@/assets/stand_pag.svg)] hidden md:flex">
+          <StandIcon />
+        </div>
         <div className="my-auto ">
           <div className="grid min-h-[45rem] min-w-[20rem] px-7 max-w-[38rem] mx-auto">
             <div className=" shadow-[0px_6px_20px_5px_rgba(0,0,0,0.25)] p-[5rem_4.2rem_2rem] rounded-[2rem] ">
