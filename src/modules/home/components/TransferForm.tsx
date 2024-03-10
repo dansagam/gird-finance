@@ -54,7 +54,6 @@ function TransferForm(props: TransferFormProps) {
     }
   }, [sendCurrency, receiverCurrency]);
 
-  console.log({ receiverCurrency, sendCurrency, knowBase, updateSentAmount });
   React.useEffect(() => {
     if (exchangeRate) {
       form.setValue("sendAmount", updateSentAmount || 0);
@@ -79,6 +78,7 @@ function TransferForm(props: TransferFormProps) {
             label: el.name_plural,
             value: el.code,
             sub: el.code,
+            icon: el.code,
           }))}
           // @ts-ignore
           prefix={CurrencySymbols[sendCurrency as keyof typeof sendCurrency] || ""}
@@ -103,6 +103,8 @@ function TransferForm(props: TransferFormProps) {
           label: el.name_plural,
           value: el.code,
           sub: el.code,
+          // @ts-ignore
+          icon: el.code,
         }))}
         label="Receiver Gets"
         // @ts-ignore
@@ -139,7 +141,7 @@ const feeStats = (values?: Partial<feeStatsProps>): FeeStats[] => [
   {
     icon: <ImFeed />,
     title: "Total to pay",
-    amount: `${values?.totalPay || 0} ${values?.received_sub || ""}`,
+    amount: `${values?.totalPay || 0} ${values?.base_sub || ""}`,
     sub: "",
   },
   {
