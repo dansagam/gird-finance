@@ -7,7 +7,12 @@ import { ImFeed } from "react-icons/im";
 import { TbBrandFeedly } from "react-icons/tb";
 import React from "react";
 import useDebounce from "@/hooks/useDebounce";
-
+import ControlledSelect from "@/shared/select/ControlledSelect";
+const CurrencyIcon = {
+  USD: "https://flagcdn.com/16x12/us.png",
+  EUR: "https://flagcdn.com/16x12/eu.png",
+  GBP: "https://flagcdn.com/16x12/gb.png",
+};
 const CurrencySymbols = {
   USD: "$",
   EUR: "€",
@@ -78,7 +83,8 @@ function TransferForm(props: TransferFormProps) {
             label: el.name_plural,
             value: el.code,
             sub: el.code,
-            icon: el.code,
+            // @ts-ignore
+            icon: CurrencyIcon[el.code],
           }))}
           // @ts-ignore
           prefix={CurrencySymbols[sendCurrency as keyof typeof sendCurrency] || ""}
@@ -104,11 +110,21 @@ function TransferForm(props: TransferFormProps) {
           value: el.code,
           sub: el.code,
           // @ts-ignore
-          icon: el.code,
+          icon: CurrencyIcon[el.code],
         }))}
         label="Receiver Gets"
         // @ts-ignore
         prefix={CurrencySymbols[receiverCurrency as keyof typeof receiverCurrency] || ""}
+      />
+      <CustomDeliverySelect
+        control={form.control}
+        name="deliveryMethod"
+        options={[
+          {
+            label: "",
+            value: "A",
+          },
+        ]}
       />
     </div>
   );
@@ -161,5 +177,41 @@ const CustomDropper = (props: FeeStats) => {
       </span>
       <span>{props.amount}</span>
     </li>
+  );
+};
+
+type Props = React.ComponentProps<typeof ControlledSelect<typeof transferDefaultValues>>;
+
+const CustomDeliverySelect = (props: Props) => {
+  const { control, options, label, ...rest } = props;
+
+  const transformOptions = options.map((opt) => {
+    const label = (
+      <div className=" flex justify-start gap-2">
+        <div>
+          <h3 className=" text-sm">Send to a Bank Account</h3>
+          <p className=" text-gray-400 text-xs">Transfer within 2 days</p>
+        </div>
+      </div>
+    );
+    return {
+      label,
+      icon: "https://send.flutterwave.com/images/icons/delivery-method/bank.svg",
+      value: opt.value,
+      sub: opt?.sub,
+    };
+  });
+
+  return (
+    <div>
+      <p>{label}</p>
+
+      <ControlledSelect<typeof transferDefaultValues>
+        control={control}
+        isSearch={false}
+        options={transformOptions}
+        {...rest}
+      />
+    </div>
   );
 };

@@ -36,6 +36,7 @@ function ControlledCombineInput<TFieldValues extends FieldValues>(props: Control
         errors={errors}
         label={label}
         rules={rules}
+        valueAsDisplay
       />
     </div>
   );

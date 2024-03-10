@@ -4,23 +4,22 @@ import { OptionType, Prettify } from "@/@types/baseInterface";
 import { LuChevronDown } from "react-icons/lu";
 import { twMerge } from "tailwind-merge";
 import SearchInput from "../input/SearchInput";
+import { isString } from "@/utils/isString";
 
-const CurrencyIcon = {
-  USD: "https://flagcdn.com/16x12/us.png",
-  EUR: "https://flagcdn.com/16x12/eu.png",
-  GBP: "https://flagcdn.com/16x12/gb.png",
-};
-type ModifiedOptionType = Prettify<OptionType & { icon?: string; sub?: React.ReactNode }>;
+type ModifiedOptionType = Prettify<
+  Omit<OptionType, "label"> & { icon?: string; sub?: React.ReactNode; label: React.ReactNode | string }
+>;
 type SelectProps = Prettify<{
   options: ModifiedOptionType[];
   value?: string;
   onChange?: (_val: string) => void;
   label?: string;
   showIcon?: boolean;
+  valueAsDisplay?: boolean;
+  isSearch?: boolean;
 }>;
 function Select(props: SelectProps) {
-  const { options, onChange, value = "", showIcon = true } = props;
-  console.log(options);
+  const { options, onChange, value = "", showIcon = true, valueAsDisplay, isSearch = true } = props;
   const [text, setText] = React.useState("");
   const escapedText = text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
   const reqText = new RegExp(`${escapedText}`, "i");
@@ -34,17 +33,13 @@ function Select(props: SelectProps) {
       <Popover className="relative">
         {({ open, close }) => (
           <React.Fragment>
-            <Popover.Button className=" rounded-[100px] flex  justify-between items-center min-w-24 outline-none p-2 bg-[#f2f2f2]">
-              {selectedValue?.icon && showIcon && (
-                <img
-                  src={
-                    // @ts-ignore
-                    CurrencyIcon[selectedValue.icon || "EUR"]
-                  }
-                  alt={selectedValue.icon}
-                />
-              )}
-              <span className=" text-black font-semibold">{selectedValue?.value || ""}</span>
+            <Popover.Button className=" rounded-[100px] flex  justify-between items-center w-full min-w-24 outline-none p-2 bg-[#f2f2f2]">
+              <span className=" flex items-center gap-2">
+                {selectedValue?.icon && showIcon && <img src={selectedValue.icon} alt={selectedValue.icon} />}
+                <span className=" text-black font-semibold">
+                  {valueAsDisplay ? selectedValue?.value || "" : selectedValue.label || ""}
+                </span>
+              </span>
               <LuChevronDown data-app-active={open} />
             </Popover.Button>
             <Transition
@@ -58,9 +53,11 @@ function Select(props: SelectProps) {
             >
               <Popover.Panel className="absolute z-10 bg-white rounded-[2rem] right-0 px-3 py-3 shadow-lg min-w-[25rem] outline-none w-full ">
                 <div>
-                  <SearchInput placeholder=" Search for currency..." onChange={(e) => setText(e.target.value)} />
+                  {isSearch && (
+                    <SearchInput placeholder=" Search for currency..." onChange={(e) => setText(e.target.value)} />
+                  )}
                   {options
-                    .filter((el) => el.label.match(reqText))
+                    .filter((el) => isString(el.label) && el.label.match(reqText))
                     .map((el, idx) => (
                       <li
                         key={idx}
@@ -77,13 +74,7 @@ function Select(props: SelectProps) {
                         }}
                       >
                         <span className=" flex items-center justify-start gap-2">
-                          <img
-                            src={
-                              // @ts-ignore
-                              CurrencyIcon[el.icon || "EUR"]
-                            }
-                            alt={el.icon}
-                          />
+                          <img src={selectedValue.icon} alt={el.icon} />
                           <span>{el.label}</span>
                         </span>
                         {el.sub && <span>{el.sub}</span>}

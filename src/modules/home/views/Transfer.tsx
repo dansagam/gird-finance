@@ -4,6 +4,7 @@ import { transferDefaultValues, transferResolver } from "@/modules/home/validati
 import HomeLayout from "@/layout/home-layout";
 import { usePaystackPayment } from "react-paystack";
 import { BASE_ENV } from "@/api/envFile";
+import AppErrorBoundary from "@/shared/error/ErrorBoundary";
 
 function Transfer() {
   const form = useForm({
@@ -31,7 +32,11 @@ function Transfer() {
   };
   return (
     <HomeLayout onAction={form.handleSubmit(onSubmit)}>
-      <TransferForm form={form} />
+      <AppErrorBoundary>
+        {" "}
+        {/** this is isolate the page when it fails and crash */}
+        <TransferForm form={form} />
+      </AppErrorBoundary>
     </HomeLayout>
   );
 }
