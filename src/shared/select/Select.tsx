@@ -62,7 +62,7 @@ function Select(props: SelectProps) {
             >
               <Popover.Panel
                 className={twMerge(
-                  "absolute z-10 bg-white rounded-[2rem] right-0 px-3 py-3 shadow-lg min-w-[25rem] outline-none w-full ",
+                  "absolute z-10 bg-white rounded-[2rem] right-0 px-3 py-3 shadow-lg min-w-[19rem] outline-none w-full ",
                   classess?.panel
                 )}
               >
