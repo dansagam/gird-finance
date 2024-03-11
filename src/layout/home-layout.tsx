@@ -11,10 +11,10 @@ type HomeLayoutProps = Prettify<
 >;
 const HomeLayout = ({ children, onAction, actionText }: HomeLayoutProps) => {
   return (
-    <div className="  w-full h-full bg-primary-lighter">
+    <div className="  w-full h-full ">
       <div className=" grid md:grid-cols-2 gap-3 grid-cols-1  h-full">
         <div className=" bg-[url(@/assets/stand_pag.svg)] hidden md:flex">
-          <StandIcon />
+          <StandIcon className=" edge-image-float" />
         </div>
         <div className="my-auto ">
           <div className="grid min-h-[45rem] min-w-[20rem] px-7 max-w-[38rem] mx-auto">
