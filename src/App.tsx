@@ -1,10 +1,11 @@
 import React from "react";
-import Transfer from "./modules/home/views/Transfer";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
 
 function App() {
   return (
     <React.Fragment>
-      <Transfer />
+      <RouterProvider router={router} />
     </React.Fragment>
   );
 }

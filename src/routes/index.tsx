@@ -1,9 +1,13 @@
 import React from "react";
-import { createBrowserRouter, Outlet } from "react-router-dom";
-import { mainRoutes } from "./routes";
+import { createBrowserRouter, Outlet, Navigate } from "react-router-dom";
+import { BASE_PATH, mainRoutes } from "./routes";
 import NotFound from "@/components/NotFound";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to={BASE_PATH.HOME} />,
+  },
   {
     path: "/",
     element: (
