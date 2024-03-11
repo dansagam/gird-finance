@@ -44,7 +44,7 @@ function Select(props: SelectProps) {
               )}
             >
               <span className=" flex items-center gap-2">
-                {selectedValue?.icon && showIcon && <img src={selectedValue.icon} alt={selectedValue.icon} />}
+                {!!selectedValue?.icon && showIcon && <img src={selectedValue.icon} alt={selectedValue.icon} />}
                 <span className=" text-black font-semibold">
                   {valueAsDisplay ? selectedValue?.value || "" : selectedValue.label || ""}
                 </span>
@@ -71,7 +71,7 @@ function Select(props: SelectProps) {
                     <SearchInput placeholder=" Search for currency..." onChange={(e) => setText(e.target.value)} />
                   )}
                   {options
-                    .filter((el) => isString(el.label) && el.label.match(reqText))
+                    .filter((el) => (isString(el.label) ? el.label.match(reqText) : true))
                     .map((el, idx) => (
                       <li
                         key={idx}

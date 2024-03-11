@@ -2,6 +2,7 @@ import { UseFormReturn } from "react-hook-form";
 import { transferDefaultValues } from "../validations";
 import ControlledCombineInput from "@/shared/input/ControlledCombineInput";
 import { useGetCurrencies, useGetExchangeRate } from "@/hooks/queries/useCurrencies";
+import BankMethon from "@/assets/bank_method.svg";
 import { MdOutlineRssFeed } from "react-icons/md";
 import { ImFeed } from "react-icons/im";
 import { TbBrandFeedly } from "react-icons/tb";
@@ -97,8 +98,8 @@ function TransferForm(props: TransferFormProps) {
             fee: 0,
             totalPay: sendAmount,
             rate: exchangeReceivedRate,
-          }).map((field) => (
-            <CustomDropper {...field} />
+          }).map((field, key) => (
+            <CustomDropper key={key} {...field} />
           ))}
         </div>
       </div>
@@ -196,7 +197,8 @@ const CustomDeliverySelect = (props: Props) => {
     );
     return {
       label,
-      icon: "https://send.flutterwave.com/images/icons/delivery-method/bank.svg",
+      // icon: "https://send.flutterwave.com/images/icons/delivery-method/bank.svg",
+      icon: BankMethon,
       value: opt.value,
       sub: opt?.sub,
     };

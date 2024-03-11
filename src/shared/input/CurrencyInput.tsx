@@ -7,7 +7,6 @@ type CurrencyInputProps = Prettify<NumericFormatProps & React.ComponentProps<typ
 
 function CurrencyInput(props: CurrencyInputProps) {
   const { value, thousandSeparator, prefix, ...rest } = props;
-  console.log({ value });
   return (
     <div>
       <NumericFormat
