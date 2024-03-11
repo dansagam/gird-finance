@@ -1,4 +1,14 @@
-# React + TypeScript + Vite
+# Transfer Payment Components a replica of the Send Fluterwave Payment platform
+
+## Setup
+
+this project uses pmpm package manager
+
+```bash
+  pnpm  install
+  pnpm dev
+  
+```
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
