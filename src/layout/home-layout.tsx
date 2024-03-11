@@ -17,8 +17,8 @@ const HomeLayout = ({ children, onAction, actionText }: HomeLayoutProps) => {
           <StandIcon className=" edge-image-float" />
         </div>
         <div className="my-auto ">
-          <div className="grid min-h-[45rem] min-w-[20rem] px-7 max-w-[38rem] mx-auto">
-            <div className=" shadow-[0px_6px_20px_5px_rgba(0,0,0,0.25)] p-[5rem_4.2rem_2rem] rounded-[2rem] ">
+          <div className="grid min-h-[45rem] min-w-[20rem] px-7 max-w-[38rem] md:mx-auto">
+            <div className=" shadow-[0px_6px_20px_5px_rgba(0,0,0,0.25)] p-[2rem_1.2rem_1rem] md:p-[5rem_4.2rem_2rem] rounded-[2rem] ">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
