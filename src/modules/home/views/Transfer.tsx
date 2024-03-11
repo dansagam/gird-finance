@@ -5,8 +5,8 @@ import HomeLayout from "@/layout/home-layout";
 import { usePaystackPayment } from "react-paystack";
 import { BASE_ENV } from "@/api/envFile";
 import AppErrorBoundary from "@/shared/error/ErrorBoundary";
-import Dialog from "@/shared/modal/Dialog";
 import React from "react";
+import SuccessModal from "@/modules/home/components/SuccessModal";
 
 function Transfer() {
   const [open, setOpen] = React.useState(false);
@@ -25,12 +25,10 @@ function Transfer() {
   const initializePayment = usePaystackPayment(config);
   const onSubmit: SubmitHandler<typeof transferDefaultValues> = () => {
     initializePayment({
-      onSuccess(values) {
-        console.log({ values });
+      onSuccess() {
         setOpen(true);
       },
-      onClose(values) {
-        console.log({ values });
+      onClose() {
         setOpen(true);
         setErr(true);
       },
@@ -43,17 +41,14 @@ function Transfer() {
         {/** this is isolate the page when it fails and crash */}
         <TransferForm form={form} />
       </AppErrorBoundary>
-      <Dialog
+      <SuccessModal
         open={open}
         onClose={() => {
           setOpen(false);
           setErr(false);
         }}
-      >
-        <p data-app-error={Boolean(err)} className=" text-2xl text-green-800 data-[app-error=true]:text-red-600">
-          {err ? "Error occurred" : "Transferred successfully"}
-        </p>
-      </Dialog>
+        isError={!!err}
+      />
     </HomeLayout>
   );
 }
