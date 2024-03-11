@@ -48,8 +48,10 @@ function Transfer() {
         open={open}
         onClose={() => {
           setOpen(false);
+          if (!err) {
+            navigate(BASE_PATH.HOME + "/" + "list");
+          }
           setErr(false);
-          navigate(BASE_PATH.HOME + "/" + "list");
         }}
         isError={!!err}
       />
