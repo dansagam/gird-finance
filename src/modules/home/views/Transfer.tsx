@@ -22,7 +22,7 @@ function Transfer() {
   const config = {
     reference: new Date().getTime().toString(),
     email: "user@example.com",
-    amount: Math.floor(receiverAmount || 0), //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+    amount: Math.round(receiverAmount || 0), //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
     publicKey: BASE_ENV.paystackKey,
   };
   const initializePayment = usePaystackPayment(config);
