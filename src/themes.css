@@ -1,0 +1,21 @@
+:root {
+  --primary-main: #6931a1;
+  --primary-light: #dce2fb;
+  --primary-lighter: #d0efff;
+  --background-main: #fff9f2;
+  --font-inter: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --font-sans: sans-serif -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", "Helvetica";
+  --icon-gradient: linear-gradient(147.14deg, #22c55e 6.95%, #006176 93.05%);
+
+  font-family: var(--font-inter), system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  background-color: var(--background-main);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
