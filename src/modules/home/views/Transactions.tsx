@@ -7,12 +7,12 @@ import TransactionStatCard from "../components/transactions/TransactionStatCard"
 import TransactionTable from "../components/transactions/TransactionTable";
 import useTableParams from "@/hooks/useTableParams";
 import { transactionsList } from "../mock/transaction-list";
+import { useNavigate } from "react-router-dom";
+import { BASE_PATH } from "@/routes/routes";
 
-type Props = {
-  onChange(_val: string): void;
-};
-function Transactions({ onChange }: Props) {
+function Transactions() {
   const { tableParams, setTableParams } = useTableParams();
+  const navigate = useNavigate();
   return (
     <div className=" py-2 px-5 bg-white">
       <div className=" grid gap-3">
@@ -24,8 +24,7 @@ function Transactions({ onChange }: Props) {
         <div className=" flex justify-end items-center">
           <button
             onClick={() => {
-              onChange("transfer");
-              // navigate(BASE_PATH.HOME);
+              navigate(BASE_PATH.HOME);
             }}
             className=" bg-primary-main text-white py-3 px-3 rounded"
           >
