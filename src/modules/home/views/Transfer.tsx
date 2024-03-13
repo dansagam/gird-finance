@@ -7,11 +7,13 @@ import { BASE_ENV } from "@/api/envFile";
 import AppErrorBoundary from "@/shared/error/ErrorBoundary";
 import React from "react";
 import SuccessModal from "@/modules/home/components/SuccessModal";
-import { useNavigate } from "react-router-dom";
-import { BASE_PATH } from "@/routes/routes";
+// import { useNavigate } from "react-router-dom";
+// import { BASE_PATH } from "@/routes/routes";
 
-function Transfer() {
-  const navigate = useNavigate();
+type Props = {
+  onChange(_val: string): void;
+};
+function Transfer({ onChange }: Props) {
   const [open, setOpen] = React.useState(false);
   const [err, setErr] = React.useState(false);
   const form = useForm({
@@ -49,7 +51,8 @@ function Transfer() {
         onClose={() => {
           setOpen(false);
           if (!err) {
-            navigate(BASE_PATH.HOME + "/" + "list");
+            onChange("transaction");
+            // navigate(BASE_PATH.HOME + "/" + "list");
           }
           setErr(false);
         }}
